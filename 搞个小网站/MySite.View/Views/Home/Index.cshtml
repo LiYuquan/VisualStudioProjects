@@ -29,3 +29,87 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<!--单行代码块-->
+@{ var myMessage = "hello world!";}
+<!--行内表达式或变量-->
+<p>The value of myMessage is : @myMessage</p>
+<!--多行语句代码块-->
+@{ 
+    var greeting = "Welcome to our site!";
+    var weekDay = DateTime.Now.DayOfWeek;
+    var greetingMessage = greeting + "Here in Huston it is:" + weekDay;
+}
+<p>The greeting is :@greetingMessage</p>
+@{ 
+    var txt = "";
+    if(DateTime.Now.Hour >12)
+    {
+        txt = "Good Evening";
+    }
+    else
+    {
+        txt = "Good Morning";
+    }
+}
+<p>The message is @txt</p>
+@{ 
+    var totalMessage = "";
+    if(IsPost)
+    {
+        var num1 = Request["text1"];
+        var num2 = Request["text2"];
+        var total = num1.AsInt() + num2.AsInt();
+        totalMessage = "Total =" + total;
+    }
+}
+<form action="/" method="post">
+    <p>
+        <label for="text1">First number:</label>
+        <br />
+        <input type="text" name="text1" value=" " />
+    </p>
+    <p>
+        <label for="text2">Second number:</label>
+        <br />
+        <input type="text" name="text2" value=" " />
+    </p>
+    <p><input type="submit" name=" " value="Add" /></p>
+</form>
+<p>
+    @totalMessage
+</p>
+@{ 
+    string[] members = { "jani", "hege", "kai", "jum" };
+    int i = Array.IndexOf(members, "kai") + 1;
+    int len = members.Length;
+    string x = members[2 - 1]; 
+}
+@foreach( var person in members)
+{
+    <p>@person</p>
+}
+<p>The number of names in members are @len</p>
+<p>The person at position 2 is @x</p>
+<p>Kai is now in position @i</p>
+@{ 
+    var weekday = DateTime.Now.DayOfWeek;
+    var day = weekday.ToString();
+    var message = "";
+}
+@switch (day)
+{
+    case "Monday":
+        message = " this is Monday";
+        break;
+    case "Thursday":
+        message = " this is Thursday";
+        break;
+    case "Friday":
+        message = " Tomorrow is Weekend";
+        break;
+    default:
+        message = "Today is" + day;
+        break;
+}
+<p>@message</p>
